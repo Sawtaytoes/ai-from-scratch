@@ -37,7 +37,8 @@ const gameStates = {
 
 const gameStyles = css`
 	background-color: #282c34;
-	border: 1vh solid darkgray;
+	border: 4vh solid darkgray;
+	box-sizing: border-box;
 	color: white;
 	height: 100%;
 	position: fixed;
