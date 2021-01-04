@@ -52,6 +52,7 @@ const Game = () => {
 	// ] = (
 	// 	useState(0)
 	// )
+
 	const [
 		gameState,
 		setGameState,
@@ -152,6 +153,13 @@ const Game = () => {
 						closestApproachingObstacleDistance,
 					) => {
 						dispatchAiEvent(
+							// TODO: AI needs to know:
+							// - What it did in different runs.
+							// - If it's currently in the air.
+							// - Positive reinforcement on getting points when jumping over blocks successfully.
+							// - Positive reinforcement on getting points when not jumping unless there's a block.
+							// - Potentially doesn't need neutral data.
+							// - Overwrite values in the list that are equivalent inputs and outputs because it's continually adding repeat data.
 							aiInput({
 								closestApproachingObstacleDistance,
 							})
