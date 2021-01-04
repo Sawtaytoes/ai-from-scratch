@@ -10,6 +10,7 @@ import {
 
 const iframeStyles = css`
 	border: 0;
+	display: block;
 	height: 20%;
 	width: 100%;
 `
