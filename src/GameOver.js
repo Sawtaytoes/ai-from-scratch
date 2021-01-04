@@ -16,7 +16,8 @@ const gameOverStyles = css`
 	align-items: center;
 	color: lightgray;
 	display: flex;
-	font-size: 5vw;
+	font-size: 10vw;
+	font-weight: bold;
 	height: 100%;
 	justify-content: center;
 	text-transform: uppercase;
