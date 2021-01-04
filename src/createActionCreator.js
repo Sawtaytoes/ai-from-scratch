@@ -18,7 +18,6 @@ const createActionCreator = (
 	.type = type
 
 	actionCreator
-	.__proto__
 	.toString = () => (
 		type
 	)

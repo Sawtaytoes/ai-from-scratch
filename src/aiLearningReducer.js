@@ -1,19 +1,10 @@
-import aiId from './aiId'
 import createReducer from './createReducer'
-import { aiJudgement } from './aiActionCreators'
+import { aiJudgment } from './aiActionCreators'
 
-const initialState = (
-	(
-		localStorage
-		.getItem(
-			aiId
-		)
-	)
-	|| []
-)
+const initialState = []
 
 const reducerActions = {
-	[aiJudgement]: (
+	[aiJudgment]: (
 		state,
 		{ payload },
 	) => (

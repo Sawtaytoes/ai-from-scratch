@@ -1,25 +1,25 @@
 import createActionCreator from './createActionCreator'
 
+export const aiDataUpdated = (
+	createActionCreator(
+		'aiDataUpdated'
+	)
+)
+
 export const aiInput = (
 	createActionCreator(
 		'aiInput'
 	)
 )
 
-export const aiJudgement = (
+export const aiJudgment = (
 	createActionCreator(
-		'aiJudgement'
+		'aiJudgment'
 	)
 )
 
 export const aiOutput = (
 	createActionCreator(
 		'aiOutput'
-	)
-)
-
-export const aiDataUpdated = (
-	createActionCreator(
-		'aiDataUpdated'
 	)
 )

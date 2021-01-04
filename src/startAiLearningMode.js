@@ -13,21 +13,13 @@ import aiLearningReducer from './aiLearningReducer'
 import createAiEventBusObservable from './createAiEventBusObservable'
 import { dispatchAiEvent } from './eventBusDispatchers'
 
-const aiLearningMode = (
+const startAiLearningMode = (
 	subscriber,
+	initialAiLearningData,
 ) => {
-	const initialState = (
-		aiLearningReducer(
-			undefined,
-			{
-				type: '',
-			},
-		)
-	)
-
 	const aiDataStore$ = (
 		new BehaviorSubject(
-			initialState
+			initialAiLearningData
 		)
 	)
 
@@ -36,21 +28,22 @@ const aiLearningMode = (
 		.pipe(
 			scan(
 				aiLearningReducer,
-				initialState,
+				initialAiLearningData,
 			),
 			distinctUntilChanged(),
 		)
 		.subscribe((
-			state,
+			aiDataStore,
 		) => {
 			aiDataStore$
 			.next(
-				state
+				aiDataStore
 			)
 
 			dispatchAiEvent(
-				aiDataUpdated,
-				state,
+				aiDataUpdated(
+					aiDataStore
+				)
 			)
 		})
 	)
@@ -87,4 +80,4 @@ const aiLearningMode = (
 	}
 }
 
-export default aiLearningMode
+export default startAiLearningMode

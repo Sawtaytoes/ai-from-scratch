@@ -4,7 +4,7 @@ import {
 } from 'react'
 
 import aiId from './aiId'
-import aiLearningMode from './aiLearningMode'
+import startAiLearningMode from './startAiLearningMode'
 
 const storeAiLearningData = (
 	data,
@@ -26,14 +26,25 @@ const storeAiLearningData = (
 const LearningAI = () => {
 	useEffect(
 		() => {
-			const unsubscribeFromAiLearningMode = (
-				aiLearningMode(
-					storeAiLearningData
+			const initialAiLearningData = (
+				JSON
+				.parse(
+					localStorage
+					.getItem(
+						aiId
+					)
+				)
+			)
+
+			const stopAiLearningMode = (
+				startAiLearningMode(
+					storeAiLearningData,
+					initialAiLearningData,
 				)
 			)
 
 			return () => {
-				unsubscribeFromAiLearningMode()
+				stopAiLearningMode()
 			}
 		},
 		[],

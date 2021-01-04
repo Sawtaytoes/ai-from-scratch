@@ -51,6 +51,39 @@ describe(
 		)
 
 		test(
+			'should return an action creator with the given type when called twice',
+			() => {
+				const expectedType = 'doSomething1'
+
+				const doSomething1 = (
+					createActionCreator(
+						expectedType
+					)
+				)
+
+				createActionCreator(
+					'doSomething2'
+				)
+
+				expect(
+					doSomething1
+					.type
+				)
+				.toBe(
+					expectedType
+				)
+
+				expect(
+					doSomething1
+					.toString()
+				)
+				.toBe(
+					expectedType
+				)
+			},
+		)
+
+		test(
 			'action creator should return an action when called',
 			() => {
 				const doSomething = (
