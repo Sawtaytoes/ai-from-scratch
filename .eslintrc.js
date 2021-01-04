@@ -14,6 +14,13 @@ module.exports = {
 	],
 	rules: {
 		'@ghadyani-eslint/arrow-body-parens/parens': 'off', // TEMP. Remove 'off' when fixed in @ghadyani-eslint
+		'array-bracket-newline': [
+			'warn',
+			{
+				minItems: 1,
+				multiline: true,
+			},
+		],
 		'arrow-parens': [
 			'warn',
 			'always',

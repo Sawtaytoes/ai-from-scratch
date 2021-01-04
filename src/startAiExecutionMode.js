@@ -15,6 +15,7 @@ import {
 } from './aiActionCreators'
 import createAiEventBusObservable from './createAiEventBusObservable'
 import { dispatchAiEvent } from './eventBusDispatchers'
+import judgmentTypes from './judgmentTypes'
 import ofType from './ofType'
 
 const startAiExecutionMode = () => {
@@ -43,12 +44,6 @@ const startAiExecutionMode = () => {
 				),
 				input,
 			})),
-			filter(({
-				aiDataStore,
-			}) => (
-				Array
-				.isArray(aiDataStore)
-			)),
 			map(({
 				aiDataStore,
 				input,
@@ -70,30 +65,66 @@ const startAiExecutionMode = () => {
 						.is(
 							(
 								judgedInput
-								.closestBlockDistance
+								.closestApproachingObstacleDistance
 							),
 							(
 								input
-								.closestBlockDistance
+								.closestApproachingObstacleDistance
 							),
 						)
 					))
 				)
-				: [{}]
+				: [
+					{},
+				]
 			)),
+			// This will have lots of complex calcluations in the future determining what action to take.
+			// Right now, this is random.
 			map((
 				possibleOutputs,
 			) => (
-				(
-					possibleOutputs[0]
-					.output
-				)
-				|| (
+				possibleOutputs[
+					(
+						Math
+						.floor(
+							Math
+							.random()
+						)
+					)
+					* (
+						possibleOutputs
+						.length
+					)
+				]
+			)),
+			map(({
+				judgmentType,
+				output,
+			}) => (
+				output === undefined
+				? (
 					Math.round(
 						Math.random()
 					)
-					? 'space'
+					? 'Space'
 					: null
+				)
+				: (
+					// eslint-disable-next-line @getify/proper-ternary/nested
+					Object
+					.is(
+						judgmentType,
+						(
+							judgmentTypes
+							.negative
+						),
+					)
+					? (
+						output === null
+						? 'Space'
+						: null
+					)
+					: output
 				)
 			)),
 			tap((
@@ -106,6 +137,14 @@ const startAiExecutionMode = () => {
 				)
 			)),
 			filter(Boolean),
+			tap((
+				code,
+			) => {
+				console.info(
+					'Keyboard Input:',
+					code,
+				)
+			}),
 			tap((
 				code,
 			) => (

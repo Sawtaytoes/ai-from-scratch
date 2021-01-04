@@ -1,45 +1,26 @@
 import {
 	memo,
+	useContext,
 	useEffect,
 } from 'react'
 
-import aiId from './aiId'
+import AiContext from './AiContext'
 import startAiLearningMode from './startAiLearningMode'
 
-const storeAiLearningData = (
-	data,
-) => {
-	localStorage
-	.setItem(
-		(
-			aiId
-		),
-		(
-			JSON
-			.stringify(
-				data
-			)
-		),
+const LearningAi = () => {
+	const {
+		aiDataStore$,
+	} = (
+		useContext(
+			AiContext
+		)
 	)
-}
 
-const LearningAI = () => {
 	useEffect(
 		() => {
-			const initialAiLearningData = (
-				JSON
-				.parse(
-					localStorage
-					.getItem(
-						aiId
-					)
-				)
-			)
-
 			const stopAiLearningMode = (
 				startAiLearningMode(
-					storeAiLearningData,
-					initialAiLearningData,
+					aiDataStore$
 				)
 			)
 
@@ -47,12 +28,14 @@ const LearningAI = () => {
 				stopAiLearningMode()
 			}
 		},
-		[],
+		[
+			aiDataStore$,
+		],
 	)
 
 	return null
 }
 
-const MemoizedLearningAI = memo(LearningAI)
+const MemoizedLearningAi = memo(LearningAi)
 
-export default MemoizedLearningAI
+export default MemoizedLearningAi

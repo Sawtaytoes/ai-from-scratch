@@ -1,27 +1,41 @@
 import {
 	memo,
+	useContext,
 	useEffect,
 } from 'react'
 
+import AiContext from './AiContext'
 import startAiExecutionMode from './startAiExecutionMode'
 
-const ExecutionAI = () => {
+const ExecutionAi = () => {
+	const {
+		aiDataStore$,
+	} = (
+		useContext(
+			AiContext
+		)
+	)
+
 	useEffect(
 		() => {
 			const stopAiExecutionMode = (
-				startAiExecutionMode()
+				startAiExecutionMode(
+					aiDataStore$
+				)
 			)
 
 			return () => {
 				stopAiExecutionMode()
 			}
 		},
-		[],
+		[
+			aiDataStore$,
+		],
 	)
 
 	return null
 }
 
-const MemoizedExecutionAI = memo(ExecutionAI)
+const MemoizedExecutionAi = memo(ExecutionAi)
 
-export default MemoizedExecutionAI
+export default MemoizedExecutionAi
