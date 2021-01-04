@@ -62,7 +62,10 @@ const startAiExecutionMode = () => {
 					.filter(({
 						input: judgedInput,
 					}) => (
-						// We need to eventually know about yHeight for physics.
+						// We need to eventually know about:
+						// yHeight for physics.
+						// If a block is underneath us and how long it is relative to our position.
+						// All blocks on the screen and their relative distance to each other (or maybe just the ones up close).
 						Object
 						.is(
 							(
