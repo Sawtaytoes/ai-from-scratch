@@ -122,6 +122,7 @@ const AiProvider = ({
 						key,
 					}) => (
 						key === localStorageKey
+						|| key === null
 					)),
 					pluck('newValue'),
 					map(parseJsonData),
