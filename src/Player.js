@@ -73,7 +73,7 @@ const Player = ({
 		() => {
 			const jumpingSubscription = (
 				// TODO: This needs to be based on block movements.
-				timer(1000)
+				timer(150)
 				.pipe(
 					tap(() => {
 						setIsJumping(
