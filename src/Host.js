@@ -5,6 +5,7 @@ import {
 	memo,
 	useMemo,
 } from 'react'
+// TODO: All UUIDs to each Ai in the future, so they can be individualized in a larger database. Problem is knowing which UUIDs are the current generation.
 // import { v4 as uuidV4 } from 'uuid'
 
 const iframeStyles = css`

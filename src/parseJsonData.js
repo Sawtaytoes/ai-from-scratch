@@ -2,6 +2,7 @@ const parseJsonData = (
 	jsonData,
 ) => (
 	jsonData === undefined
+	|| jsonData === ''
 	? jsonData
 	: (
 		JSON

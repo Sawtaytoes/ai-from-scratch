@@ -2,14 +2,11 @@ import { memo } from 'react'
 
 import AiIdProvider from './AiIdProvider'
 import App from './App'
-import './Root.css'
 
 const Root = () => (
-	<div className="Root">
-		<AiIdProvider>
-			<App />
-		</AiIdProvider>
-	</div>
+	<AiIdProvider>
+		<App />
+	</AiIdProvider>
 )
 
 const MemoizedRoot = memo(Root)
